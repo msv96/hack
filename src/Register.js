@@ -9,7 +9,7 @@ function Register() {
 					<div className="card border-0 shadow rounded-3 my-5">
 						<div className="card-body p-4 p-sm-5">
 							<h5 className="card-title text-center mb-5 fw-light fs-5">
-								Sign Up
+								Register
 							</h5>
 							<form>
 								<div className="form-floating mb-3">
@@ -38,10 +38,10 @@ function Register() {
 									<input
 										type="password"
 										className="form-control"
-										id="floatingPassword"
+										id="confirmPassword"
 										placeholder="Password"
 									/>
-									<label htmlFor="floatingPassword">
+									<label htmlFor="confirmPassword">
 										Confirm Password
 									</label>
 								</div>
@@ -54,23 +54,21 @@ function Register() {
 									</button>
 								</div>
 							</form>
-							<div className="col-lg-6 mx-auto">
-								<Link to="/">
-									<button
-										type="submit"
-										className="btn btn-danger"
+							<div className="d-grid py-3">
+								<button
+									type="submit"
+									className="btn btn-danger text-uppercase fw-bold"
+								>
+									<Link
+										to="/"
+										className="text-decoration-none text-white"
 									>
 										Cancel
-									</button>
-								</Link>
+									</Link>
+								</button>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div className="col-lg-6 mx-auto">
-					<Link to="/" className="btn btn-outline-primary">
-						Home
-					</Link>
 				</div>
 			</div>
 		</div>

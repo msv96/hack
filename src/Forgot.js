@@ -38,10 +38,10 @@ function Forgot() {
 									<input
 										type="password"
 										className="form-control"
-										id="floatingPassword"
+										id="confirmPassword"
 										placeholder="Password"
 									/>
-									<label htmlFor="floatingPassword">
+									<label htmlFor="confirmPassword">
 										Confirm Password
 									</label>
 								</div>
@@ -54,25 +54,21 @@ function Forgot() {
 									</button>
 								</div>
 							</form>
-							<div className="col-lg-6 mx-auto">
-								<Link to="/">
-									<button
-										type="submit"
-										className="btn btn-danger"
+							<div className="d-grid py-3">
+								<button
+									type="submit"
+									className="btn btn-danger text-uppercase fw-bold"
+								>
+									<Link
+										to="/"
+										className="text-decoration-none text-white"
 									>
-										Home
-									</button>
-								</Link>
+										Cancel
+									</Link>
+								</button>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div className="col-lg-6 mx-auto">
-					<Link to="/">
-						<button type="submit" className="btn btn-primary">
-							Home
-						</button>
-					</Link>
 				</div>
 			</div>
 		</div>

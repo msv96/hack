@@ -9,7 +9,7 @@ function Home() {
 					<p className="m-5">
 						If you have an account,
 						<br />
-						please Sign In
+						please sign in
 					</p>
 					<Link to="/signin">
 						<button
@@ -22,7 +22,7 @@ function Home() {
 					<p className="m-5">
 						Don't have an account,
 						<br />
-						please Register
+						register here
 					</p>
 					<Link to="/register">
 						<button

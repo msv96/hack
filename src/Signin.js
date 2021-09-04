@@ -43,23 +43,35 @@ function Signin() {
 									</button>
 								</div>
 							</form>
-							<Link to="/forgot">
+							<div className="d-grid py-3">
 								<button
 									type="submit"
-									className="btn btn-danger"
+									className="btn btn-danger text-uppercase fw-bold"
 								>
-									Forgot Password
+									<Link
+										to="/forgot"
+										className="text-decoration-none text-white"
+									>
+										Forgot Password ?
+									</Link>
 								</button>
-							</Link>
+							</div>
+							<hr className="my-4" />
+							<div className="d-grid py-3">
+								<button
+									type="submit"
+									className="btn btn-success text-uppercase fw-bold"
+								>
+									<Link
+										to="/"
+										className="text-decoration-none text-white"
+									>
+										Home
+									</Link>
+								</button>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div className="col-lg-6 mx-auto">
-					<Link to="/">
-						<button type="submit" className="btn btn-primary">
-							Home
-						</button>
-					</Link>
 				</div>
 			</div>
 		</div>

@@ -14,10 +14,10 @@ function App() {
 	return (
     <Router>
       <Switch>
-        <Route to="/" component={Home} exact={true}></Route>
-        <Route to="/signin" component={Signin} exact={true}></Route>
-        <Route to="/register" component={Register} exact={true}></Route>
-        <Route to="/forgot" component={Forgot} exact={true}></Route>
+        <Route path="/" component={Home} exact={true}></Route>
+        <Route path="/signin" component={Signin} exact={true}></Route>
+        <Route path="/register" component={Register} exact={true}></Route>
+        <Route path="/forgot" component={Forgot} exact={true}></Route>
       </Switch>
     </Router>
 	);
