@@ -18,7 +18,7 @@ function Register() {
 				pwd,
 			});
 			if (apidata.data.code) {
-				history.push("/");
+				history.push("/signin");
 			} else {
 				setLoading(apidata.data.msg);
 			}
@@ -37,7 +37,7 @@ function Register() {
 								Register
 							</h5>
 							{loading ? (
-								<h5 className="card-title text-center text-danger text-uppercase fw-bold fw-lightmb-5  fs-5">
+								<h5 className="card-title m-3 text-center text-danger text-uppercase fw-bold fw-light m-5  fs-5">
 									{loading}
 								</h5>
 							) : (

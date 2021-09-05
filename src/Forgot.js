@@ -1,8 +1,46 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { useHistory } from "react-router";
 
 function Forgot() {
 	const history = useHistory();
+	const [mail, setMail] = useState("");
+	const [pwd, setPwd] = useState("");
+	const [pwd2, setPwd2] = useState("");
+	const [loading, setLoading] = useState("");
+
+	let handleSubmit = async (e) => {
+		e.preventDefault();
+		if (pwd === pwd2) {
+			try {
+				let apidata = await axios.put("http://localhost:3500/forgot", {
+					mail,
+					pwd,
+				});
+				setMail("");
+				setPwd("");
+				setPwd2("");
+				if (apidata.data.code) {
+					setLoading(apidata.data.msg);
+					setTimeout(() => {
+						history.push("/signin");
+					}, 5000);
+				} else {
+					setLoading(apidata.data.msg);
+					setTimeout(() => {
+						setLoading("");
+					}, 5000);
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		} else {
+			setLoading("Password Mismatch. Try Again");
+			setTimeout(() => {
+				setLoading("");
+			}, 5000);
+		}
+	};
 
 	return (
 		<div className="container">
@@ -13,13 +51,24 @@ function Forgot() {
 							<h5 className="card-title text-center mb-5 fw-light fs-5">
 								Forgot Password
 							</h5>
-							<form>
+							{loading ? (
+								<h5 className="card-title text-center m-3 fw-light fs-5 text-danger text-uppercase fw-bold">
+									{loading}
+								</h5>
+							) : (
+								""
+							)}
+							<form onSubmit={handleSubmit}>
 								<div className="form-floating mb-3">
 									<input
 										type="email"
 										className="form-control"
 										id="floatingInput"
 										placeholder="name@example.com"
+										value={mail}
+										onChange={(e) =>
+											setMail(e.target.value)
+										}
 									/>
 									<label htmlFor="floatingInput">
 										Email address
@@ -31,6 +80,8 @@ function Forgot() {
 										className="form-control"
 										id="floatingPassword"
 										placeholder="Password"
+										value={pwd}
+										onChange={(e) => setPwd(e.target.value)}
 									/>
 									<label htmlFor="floatingPassword">
 										Password
@@ -42,6 +93,10 @@ function Forgot() {
 										className="form-control"
 										id="confirmPassword"
 										placeholder="Password"
+										value={pwd2}
+										onChange={(e) =>
+											setPwd2(e.target.value)
+										}
 									/>
 									<label htmlFor="confirmPassword">
 										Confirm Password
