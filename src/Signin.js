@@ -1,7 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 
 function Signin() {
+	const history = useHistory();
+
 	return (
 		<div className="container">
 			<div className="row">
@@ -47,27 +49,19 @@ function Signin() {
 								<button
 									type="submit"
 									className="btn btn-danger text-uppercase fw-bold"
+									onClick={() => history.push("/forgot")}
 								>
-									<Link
-										to="/forgot"
-										className="text-decoration-none text-white"
-									>
-										Forgot Password ?
-									</Link>
+									Forgot Password ?
 								</button>
 							</div>
 							<hr className="my-4" />
 							<div className="d-grid py-3">
 								<button
 									type="submit"
-									className="btn btn-success text-uppercase fw-bold"
+									className="btn btn-outline-success text-uppercase fw-bold"
+									onClick={() => history.push("/")}
 								>
-									<Link
-										to="/"
-										className="text-decoration-none text-white"
-									>
-										Home
-									</Link>
+									Home
 								</button>
 							</div>
 						</div>

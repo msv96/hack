@@ -1,7 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { useHistory } from "react-router";
 
 function Register() {
+	const history = useHistory();
+
+	let handleSubmit = async (e) => {
+		e.preventDefault();
+		try {
+			let apidata = await axios.post("http://localhost:3500/register", {
+				msg: "client request",
+			});
+			console.log(apidata);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	return (
 		<div className="container">
 			<div className="row">
@@ -11,7 +26,7 @@ function Register() {
 							<h5 className="card-title text-center mb-5 fw-light fs-5">
 								Register
 							</h5>
-							<form>
+							<form onSubmit={handleSubmit}>
 								<div className="form-floating mb-3">
 									<input
 										type="email"
@@ -34,17 +49,6 @@ function Register() {
 										Password
 									</label>
 								</div>
-								<div className="form-floating mb-3">
-									<input
-										type="password"
-										className="form-control"
-										id="confirmPassword"
-										placeholder="Password"
-									/>
-									<label htmlFor="confirmPassword">
-										Confirm Password
-									</label>
-								</div>
 								<div className="d-grid py-3">
 									<button
 										className="btn btn-primary btn-login text-uppercase fw-bold"
@@ -58,13 +62,9 @@ function Register() {
 								<button
 									type="submit"
 									className="btn btn-danger text-uppercase fw-bold"
+									onClick={() => history.push("/")}
 								>
-									<Link
-										to="/"
-										className="text-decoration-none text-white"
-									>
-										Cancel
-									</Link>
+									Cancel
 								</button>
 							</div>
 						</div>

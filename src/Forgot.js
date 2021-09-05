@@ -1,7 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 
 function Forgot() {
+	const history = useHistory();
+
 	return (
 		<div className="container">
 			<div className="row">
@@ -58,13 +60,9 @@ function Forgot() {
 								<button
 									type="submit"
 									className="btn btn-danger text-uppercase fw-bold"
+									onClick={() => history.push("/")}
 								>
-									<Link
-										to="/"
-										className="text-decoration-none text-white"
-									>
-										Cancel
-									</Link>
+									Cancel
 								</button>
 							</div>
 						</div>

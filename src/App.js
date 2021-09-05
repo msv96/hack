@@ -5,10 +5,12 @@ import Home from "./Home";
 import Signin from "./Signin";
 import Register from "./Register";
 import Forgot from "./Forgot";
+import Topbar from "./Topbar";
 
 function App() {
 	return (
 		<Router>
+			<Topbar />
 			<Switch>
 				<Route path="/" exact>
 					<Home />

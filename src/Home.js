@@ -7,6 +7,19 @@ function Home() {
 			<div className="row">
 				<div className="col-md-4 text-center mx-auto">
 					<p className="m-5">
+						Don't have an account,
+						<br />
+						register here
+					</p>
+					<Link to="/register">
+						<button
+							type="submit"
+							className="btn btn-outline-success"
+						>
+							Register
+						</button>
+					</Link>
+					<p className="m-5">
 						If you have an account,
 						<br />
 						please sign in
@@ -20,25 +33,12 @@ function Home() {
 						</button>
 					</Link>
 					<p className="m-5">
-						Don't have an account,
-						<br />
-						register here
-					</p>
-					<Link to="/register">
-						<button
-							type="submit"
-							className="btn btn-success"
-						>
-							Register
-						</button>
-					</Link>
-					<p className="m-5">
 						Forgot your account password?
 					</p>
 					<Link to="/forgot">
 						<button
 							type="submit"
-							className="btn btn-danger"
+							className="btn btn-outline-danger"
 						>
 							Forgot Password
 						</button>
