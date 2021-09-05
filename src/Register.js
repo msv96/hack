@@ -1,17 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router";
 
 function Register() {
 	const history = useHistory();
+	const [name, setName] = useState("");
+	const [mail, setMail] = useState("");
+	const [pwd, setPwd] = useState("");
+	const [loading, setLoading] = useState("");
 
 	let handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
 			let apidata = await axios.post("http://localhost:3500/register", {
-				msg: "client request",
+				name,
+				mail,
+				pwd,
 			});
-			console.log(apidata);
+			if (apidata.data.code) {
+				history.push("/");
+			} else {
+				setLoading(apidata.data.msg);
+			}
 		} catch (error) {
 			console.log(error);
 		}
@@ -26,13 +36,39 @@ function Register() {
 							<h5 className="card-title text-center mb-5 fw-light fs-5">
 								Register
 							</h5>
+							{loading ? (
+								<h5 className="card-title text-center text-danger text-uppercase fw-bold fw-lightmb-5  fs-5">
+									{loading}
+								</h5>
+							) : (
+								""
+							)}
 							<form onSubmit={handleSubmit}>
+								<div className="form-floating mb-3">
+									<input
+										type="text"
+										className="form-control"
+										id="floatingName"
+										placeholder="name"
+										value={name}
+										onChange={(e) =>
+											setName(e.target.value)
+										}
+										required
+									/>
+									<label htmlFor="floatingName">Name</label>
+								</div>
 								<div className="form-floating mb-3">
 									<input
 										type="email"
 										className="form-control"
 										id="floatingInput"
 										placeholder="name@example.com"
+										value={mail}
+										onChange={(e) =>
+											setMail(e.target.value)
+										}
+										required
 									/>
 									<label htmlFor="floatingInput">
 										Email address
@@ -44,6 +80,9 @@ function Register() {
 										className="form-control"
 										id="floatingPassword"
 										placeholder="Password"
+										value={pwd}
+										onChange={(e) => setPwd(e.target.value)}
+										required
 									/>
 									<label htmlFor="floatingPassword">
 										Password

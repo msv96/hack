@@ -6,6 +6,7 @@ import Signin from "./Signin";
 import Register from "./Register";
 import Forgot from "./Forgot";
 import Topbar from "./Topbar";
+import User from "./User";
 
 function App() {
 	return (
@@ -15,14 +16,17 @@ function App() {
 				<Route path="/" exact>
 					<Home />
 				</Route>
-				<Route path="/signin" exact>
-					<Signin />
-				</Route>
 				<Route path="/register" exact>
 					<Register />
 				</Route>
 				<Route path="/forgot" exact>
 					<Forgot />
+				</Route>
+				<Route path="/signin" exact>
+					<Signin />
+				</Route>
+				<Route path="/user" exact>
+					<User />
 				</Route>
 			</Switch>
 		</Router>

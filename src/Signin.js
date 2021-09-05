@@ -1,8 +1,34 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { useHistory } from "react-router";
 
 function Signin() {
 	const history = useHistory();
+	const [mail, setMail] = useState("");
+	const [pwd, setPwd] = useState("");
+	const [loading, setLoading] = useState("");
+
+	let handleSubmit = async (e) => {
+		e.preventDefault();
+		try {
+			let apidata = await axios.post("http://localhost:3500/signin", {
+				mail,
+				pwd,
+			});
+			if (apidata.data.code) {
+				history.push("/user");
+			} else {
+				setLoading(apidata.data.msg);
+			}
+			setTimeout(() => {
+				setLoading("");
+			}, 5000);
+			setMail("");
+			setPwd("");
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	return (
 		<div className="container">
@@ -13,13 +39,24 @@ function Signin() {
 							<h5 className="card-title text-center mb-5 fw-light fs-5">
 								Sign In
 							</h5>
-							<form>
+							{loading ? (
+								<h5 className="card-title text-center mb-5 fw-light fs-5 text-danger text-uppercase fw-bold">
+									{loading}
+								</h5>
+							) : (
+								""
+							)}
+							<form onSubmit={handleSubmit}>
 								<div className="form-floating mb-3">
 									<input
 										type="email"
 										className="form-control"
 										id="floatingInput"
 										placeholder="name@example.com"
+										value={mail}
+										onChange={(e) =>
+											setMail(e.target.value)
+										}
 									/>
 									<label htmlFor="floatingInput">
 										Email address
@@ -31,6 +68,8 @@ function Signin() {
 										className="form-control"
 										id="floatingPassword"
 										placeholder="Password"
+										value={pwd}
+										onChange={(e) => setPwd(e.target.value)}
 									/>
 									<label htmlFor="floatingPassword">
 										Password
