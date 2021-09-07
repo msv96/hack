@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useHistory } from "react-router";
+import env from "./Settings";
 
 function Signin() {
 	const history = useHistory();
@@ -12,10 +13,11 @@ function Signin() {
 	let handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			let apidata = await axios.post("http://localhost:3500/signin", {
+			let apidata = await axios.post(`${env.api}/signin`, {
 				mail,
 				pwd,
 			});
+			// console.log(apidata);
 			if (apidata.data.code) {
 				setCurrent([apidata.data.user]);
 				// history.push("/user");
@@ -36,14 +38,20 @@ function Signin() {
 		<div className="container">
 			<div className="row">
 				{current.length === 0 ? (
-					<div className="col-sm-9 col-md-7 col-lg-5 mx-auto" key="fhhji">
+					<div
+						className="col-sm-9 col-md-7 col-lg-5 mx-auto"
+						key="fhhji"
+					>
 						<div className="card border-0 shadow rounded-3 my-5">
 							<div className="card-body p-4 p-sm-5">
 								<h5 className="card-title text-center mb-5 fw-light fs-5">
 									Sign In
 								</h5>
 								{loading ? (
-									<h5 key="fsa" className="card-title text-center m-3 fw-light fs-5 text-danger text-uppercase fw-bold">
+									<h5
+										key="fsa"
+										className="card-title text-center m-3 fw-light fs-5 text-danger text-uppercase fw-bold"
+									>
 										{loading}
 									</h5>
 								) : (
@@ -60,6 +68,7 @@ function Signin() {
 											onChange={(e) =>
 												setMail(e.target.value)
 											}
+											required
 										/>
 										<label htmlFor="floatingInput">
 											Email address
@@ -75,6 +84,7 @@ function Signin() {
 											onChange={(e) =>
 												setPwd(e.target.value)
 											}
+											required
 										/>
 										<label htmlFor="floatingPassword">
 											Password

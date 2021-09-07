@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useHistory } from "react-router";
+import env from "./Settings";
 
 function Forgot() {
 	const history = useHistory();
@@ -13,7 +14,7 @@ function Forgot() {
 		e.preventDefault();
 		if (pwd === pwd2) {
 			try {
-				let apidata = await axios.put("http://localhost:3500/forgot", {
+				let apidata = await axios.put(`${env.api}/forgot`, {
 					mail,
 					pwd,
 				});
@@ -69,6 +70,7 @@ function Forgot() {
 										onChange={(e) =>
 											setMail(e.target.value)
 										}
+										required
 									/>
 									<label htmlFor="floatingInput">
 										Email address
@@ -82,6 +84,7 @@ function Forgot() {
 										placeholder="Password"
 										value={pwd}
 										onChange={(e) => setPwd(e.target.value)}
+										required
 									/>
 									<label htmlFor="floatingPassword">
 										Password
@@ -97,6 +100,7 @@ function Forgot() {
 										onChange={(e) =>
 											setPwd2(e.target.value)
 										}
+										required
 									/>
 									<label htmlFor="confirmPassword">
 										Confirm Password

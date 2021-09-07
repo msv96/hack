@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
+import env from "./Settings";
 
 function User() {
 	const history = useHistory();
@@ -9,7 +10,7 @@ function User() {
 	useEffect(() => {
 		let fetch = async () => {
 			try {
-				let apidata = await axios.get("http://localhost:3500");
+				let apidata = await axios.get(`${env.api}`);
 				console.log(apidata);
 				setUserdata([...apidata.data]);
 			} catch (error) {

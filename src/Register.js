@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router";
+import env from "./Settings";
 
 function Register() {
 	const history = useHistory();
@@ -12,16 +13,23 @@ function Register() {
 	let handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			let apidata = await axios.post("http://localhost:3500/register", {
+			let apidata = await axios.post(`${env.api}/register`, {
 				name,
 				mail,
 				pwd,
 			});
+			// console.log(apidata.data);
 			if (apidata.data.code) {
 				history.push("/signin");
 			} else {
 				setLoading(apidata.data.msg);
 			}
+			setTimeout(() => {
+				setName("");
+				setMail("");
+				setPwd("");
+				setLoading("");
+			}, 5000);
 		} catch (error) {
 			console.log(error);
 		}
